@@ -20,20 +20,22 @@ public class MascotaServlet extends HttpServlet {
     @Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {}
+    
+    //Peticiones HTTP(GET,POST)//Recibir datos del formulario y pasarlo al DAO
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        String accion = request.getParameter("accion");
+        String accion = request.getParameter("accion");//Lee el parámetro oculto del formulario, para saber qué hacer
 
         if (accion == null) {
-            response.sendRedirect("index.jsp");
+            response.sendRedirect("index.jsp");//Redirige al index
             return;
         }
 
         switch (accion) {
-            case "insertar":
+            case "insertar"://Llama al método que está en el formulario y los pasa al DAO
                 insertar(request, response);
                 return;
 
@@ -45,15 +47,15 @@ public class MascotaServlet extends HttpServlet {
                 eliminarMascota(request, response);
                 return;
 
-            case "listar":
+            case "listar": //Obtiene la lista desde el DAO
                 List<Mascota> lista = Dao.listarMascota();
-                request.setAttribute("mascotas", lista);
-                request.getRequestDispatcher("listar.jsp").forward(request, response);
+                request.setAttribute("mascotas", lista);//Guarda en el resquest
+                response.sendRedirect("Listar.jsp");
                 return;
 
                 
           
-            default:
+            default://Si la acción no existe redirige al index
                 response.sendRedirect("index.jsp");
                 return;
         }
@@ -77,18 +79,18 @@ public class MascotaServlet extends HttpServlet {
             String raza = request.getParameter("raza");
             int idcedula = Integer.parseInt(request.getParameter("IDCedula"));
 
-            Mascota m = new Mascota();
+            Mascota m = new Mascota();//Objeti mascota para asignar los valores
             m.setNombre(nombre);
             m.setEspecie(especie);
             m.setGénero(genero);
             m.setRaza(raza);
             m.setIdcedula(idcedula);
 
-            Dao.insert(m);
+            Dao.insert(m);//Llama al Dao
             
             
             if (!response.isCommitted()) {
-                response.sendRedirect("index.jsp");
+                response.sendRedirect("index.jsp"); //Redirige al index
             } else {
                 System.out.println("La respuesta ya está comprometida, no se puede redirigir");
             }
@@ -112,7 +114,7 @@ public class MascotaServlet extends HttpServlet {
             String raza = request.getParameter("raza");
             int idcedula = Integer.parseInt(request.getParameter("IDCedula"));
 
-            Mascota m = new Mascota();
+            Mascota m = new Mascota();//Objeto Mascota
             m.setIDMascota(idMascota);
             m.setNombre(nombre);
             m.setEspecie(especie);
@@ -120,7 +122,7 @@ public class MascotaServlet extends HttpServlet {
             m.setRaza(raza);
             m.setIdcedula(idcedula);
 
-            Dao.update(m);
+            Dao.update(m);//Llama al DAO
             if (!response.isCommitted()) {
                 response.sendRedirect("index.jsp");
             } else {
@@ -140,10 +142,10 @@ public class MascotaServlet extends HttpServlet {
 
         try {
             int idMascota = Integer.parseInt(request.getParameter("IDMascota"));
-            Dao.delete(idMascota);
+            Dao.delete(idMascota);//Llama al DAO
             
             if (!response.isCommitted()) {
-                response.sendRedirect("index.jsp");
+                response.sendRedirect("index.jsp");//Redirige al index
             } else {
                 System.out.println("La respuesta ya está comprometida, no se puede redirigir");
             }

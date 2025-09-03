@@ -150,8 +150,9 @@ nav a:hover {
 
   <button type="submit">Enviar Correo</button>
 </form>
+</body>
+
 <nav>
   <a href="index.jsp">Formulario de mascota</a>
 </nav>
-</body>
 </html>

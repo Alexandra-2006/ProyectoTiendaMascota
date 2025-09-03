@@ -6,9 +6,9 @@ import Controlador.Conexion;
 import Modelo.Mascota;
 
 public class MascotaDAO {
-	Connection con;
-	PreparedStatement ps;
-	ResultSet rs;
+	Connection con; //Conexió base de datos
+	PreparedStatement ps; //Ejecuta sentencias SQL con parámetros
+	ResultSet rs;//Guardar resultados de consulta
 
 	// INSERT
 	public void insert(Mascota m) {
@@ -21,7 +21,7 @@ public class MascotaDAO {
 			ps.setString(3, m.getGénero());
 			ps.setString(4, m.getRaza());
 			ps.setInt(5, m.getIdcedula());
-			ps.executeUpdate();
+			ps.executeUpdate(); //Devuelve las filas
 
 			System.out.println("Filas insertadas: ");
 
@@ -34,11 +34,11 @@ public class MascotaDAO {
 	public List<Mascota> listarMascota() {
 	    List<Mascota> lista = new ArrayList<>();
 	    String sql = "SELECT * FROM mascota";
-	    try (Connection con = Conexion.getConnection();
+	    try (Connection con = Conexion.getConnection();// Abre la conexion 
 	         PreparedStatement ps = con.prepareStatement(sql);
 	         ResultSet rs = ps.executeQuery()) {
 	        
-	        while (rs.next()) {
+	        while (rs.next()) { //Avanza por cada fila
 	            Mascota m = new Mascota();
 	            m.setIDMascota(rs.getInt("IDMascota"));
 	            m.setNombre(rs.getString("Nombre"));
@@ -46,13 +46,15 @@ public class MascotaDAO {
 	            m.setGénero(rs.getString("Género"));
 	            m.setRaza(rs.getString("Raza"));
 	            m.setIdcedula(rs.getInt("IDCedula"));
-	            lista.add(m);
+	            lista.add(m); //Guardar en lista
 	        }
 
-	    } catch (Exception e) {
+	    } catch (SQLException e) {
+	    	
+	    	System.out.println("Error: " + e.getMessage());
 	        e.printStackTrace();
 	    }
-	    return lista;
+	    return lista; //Retorno la lista
 	}
 
 	
@@ -70,7 +72,7 @@ public class MascotaDAO {
 		        ps.setInt(5, m.getIdcedula());
 		        ps.setInt(6, m.getIDMascota());
 
-		        int rows = ps.executeUpdate();
+		        int rows = ps.executeUpdate();// Cuantas filas fueron afectadas
 		        System.out.println("Filas actualizadas: " + rows);
 
 		    } catch (Exception e) {

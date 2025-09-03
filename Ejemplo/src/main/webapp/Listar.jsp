@@ -2,7 +2,6 @@
     pageEncoding="UTF-8"%>
 <%@page import="Modelo.Mascota"%>
 <%@page import="java.util.List"%>
-<%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
     <title>Listado de Mascotas</title>
@@ -24,9 +23,9 @@
     </tr>
 
     <%
-        List<Mascota> mascotas = (List<Mascota>) request.getAttribute("mascotas");
-        if (mascotas != null) {
-            for (Mascota m : mascotas) {
+        List<Mascota> lista = (List<Mascota>) request.getAttribute("mascotas");
+        if (lista != null) {
+            for (Mascota m : lista) {
     %>
         <tr>
             <td><%= m.getIDMascota() %></td>

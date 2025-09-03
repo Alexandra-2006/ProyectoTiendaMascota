@@ -17,6 +17,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
+
 // Librerías de iText
 
 @WebServlet(name = "GenerarPdfServlet", urlPatterns = "/GenerarPdfServlet")
@@ -46,12 +47,12 @@ public class GenerarPdfServlet extends HttpServlet {
              PdfWriter.getInstance(document, response.getOutputStream());
              document.open();
 
-             // 📌 Encabezado del PDF
+             //  Encabezado del PDF
              document.add(new Paragraph("Lista de Mascotas"));
              document.add(new Paragraph("Fecha de generación: " + new java.util.Date()));
              document.add(new Paragraph(" "));
 
-             // 📌 Consulta a la BD
+             // Consulta a la BD
              
              String sql = "SELECT Nombre, Especie, Género, Raza, IDCedula FROM mascota";
              try (Statement stmt = connection.createStatement();

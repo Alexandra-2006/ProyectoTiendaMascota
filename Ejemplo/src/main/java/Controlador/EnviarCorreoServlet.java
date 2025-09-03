@@ -60,7 +60,7 @@ public class EnviarCorreoServlet extends HttpServlet {
         String remitente = "alexandraamaris02@gmail.com";
         String clave = "ygyi tsgx szif sewu"; // Contraseña de aplicación, no la personal
 
-        //  Configuración SMTP
+        //  Configuración SMTP //Protocolo de transferencia de correo
         Properties props = new Properties();
         props.put("mail.smtp.auth", "true");
         props.put("mail.smtp.starttls.enable", "true");
@@ -90,7 +90,7 @@ public class EnviarCorreoServlet extends HttpServlet {
             PrintWriter out = response.getWriter();
             out.println("<html><body style='font-family:sans-serif; text-align:center; padding-top:40px;'>");
             out.println("<h2 style='color:green;'>¡Correo enviado exitosamente a " + destinatario + "!</h2>");
-            out.println("<a href='enviarCorreo.jsp'>← Volver</a>");
+            out.println("<a href='EnviarCorreo.jsp'>← Volver</a>");
             out.println("</body></html>");
 
         } catch (MessagingException e) {
@@ -100,7 +100,7 @@ public class EnviarCorreoServlet extends HttpServlet {
             out.println("<html><body style='font-family:sans-serif; text-align:center; padding-top:40px;'>");
             out.println("<h2 style='color:red;'>Error al enviar correo:</h2>");
             out.println("<p>" + e.getMessage() + "</p>");
-            out.println("<a href='/EnviarCorreo.jsp'>← Volver</a>");
+            out.println("<a href='EnviarCorreo.jsp'>← Volver</a>");
             out.println("</body></html>");
         }
     }
