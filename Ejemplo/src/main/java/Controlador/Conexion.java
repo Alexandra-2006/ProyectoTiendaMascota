@@ -5,6 +5,9 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 
+//Esta clase nos permitirá abrir o habilitar la conexión a la base de datos con el localhost, el puerto que es el 3306, la ruta y la contraseña
+//
+
 public class Conexion {
 	
 	public static final String URL = "jdbc:mysql://localhost:3306/bd_tiendamascotas";

@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -112,47 +112,49 @@ nav a:hover {
 }
 
 /* Animación */
-@keyframes fadeIn {
-	from {
-		opacity: 0;
-		transform: translateY(-10px);
-	}
-	to {
-		opacity: 1;
-		transform: translateY(0);
-	}
+@
+keyframes fadeIn {from { opacity:0;
+	transform: translateY(-10px);
+}
+
+to {
+	opacity: 1;
+	transform: translateY(0);
+}
 }
 </style>
 </head>
 <body>
 
-<!-- Menú -->
+	<!-- Menú -->
 
 
-<!-- Formulario de correo -->
-<form action="EnviarCorreoServlet" method="post">
-  <h1>Enviar Correo</h1>
+	<!-- Formulario de correo -->
+	<form action="EnviarCorreoServlet" method="post">
+		<h1>Enviar Correo</h1>
 
-  <div class="form-group">
-    <label for="destinatario">Correo Destinatario:</label>
-    <input type="email" name="destinatario" id="destinatario" required />
-  </div>
+		<div class="form-group">
+			<label for="destinatario">Correo Destinatario:</label> <input
+				type="email" name="destinatario" id="destinatario" required />
+		</div>
 
-  <div class="form-group">
-    <label for="asunto">Asunto:</label>
-    <input type="text" name="asunto" id="asunto" required />
-  </div>
+		<div class="form-group">
+			<label for="asunto">Asunto:</label> <input type="text" name="asunto"
+				id="asunto" required />
+		</div>
 
-  <div class="form-group">
-    <label for="mensaje">Mensaje:</label>
-    <textarea name="mensaje" id="mensaje" rows="6" required></textarea>
-  </div>
+		<div class="form-group">
+			<label for="mensaje">Mensaje:</label>
+			<textarea name="mensaje" id="mensaje" rows="6" required></textarea>
+			
+		</div>
 
-  <button type="submit">Enviar Correo</button>
-</form>
+		<button type="submit">Enviar Correo</button>
+		<nav>
+				<a href="index.jsp">Formulario de mascota</a>
+			</nav>
+	</form>
 </body>
 
-<nav>
-  <a href="index.jsp">Formulario de mascota</a>
-</nav>
+
 </html>

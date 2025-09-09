@@ -45,21 +45,23 @@ public class EnviarCorreoServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
+	//Método seguro para que no muestre los datos del formulario en la URL 
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 		
 		
 
-        // Leer datos del formulario correctamente
+        // Leer datos del formulario correctamente, y se crea una contraseña de aplicación, no la personal
+
         String destinatario = request.getParameter("destinatario");
         String asunto = request.getParameter("asunto");
         String mensajeTexto = request.getParameter("mensaje");
 
         //  Tu cuenta de Gmail (remitente)
         String remitente = "alexandraamaris02@gmail.com";
-        String clave = "ygyi tsgx szif sewu"; // Contraseña de aplicación, no la personal
-
+        String clave = "ygyi tsgx szif sewu"; 
         //  Configuración SMTP //Protocolo de transferencia de correo
         Properties props = new Properties();
         props.put("mail.smtp.auth", "true");
@@ -67,7 +69,7 @@ public class EnviarCorreoServlet extends HttpServlet {
         props.put("mail.smtp.host", "smtp.gmail.com");
         props.put("mail.smtp.port", "587");
 
-        //  Autenticación
+        // Crea una sesión auténticada 
         Session session = Session.getInstance(props, new Authenticator() {
             protected PasswordAuthentication getPasswordAuthentication() {
                 return new PasswordAuthentication(remitente, clave);
@@ -82,7 +84,7 @@ public class EnviarCorreoServlet extends HttpServlet {
             message.setSubject(asunto);
             message.setText(mensajeTexto);
 
-            //  Enviar
+            //  Envia el mensaje
             Transport.send(message);
 
             // Mostrar mensaje en respuesta
@@ -94,7 +96,7 @@ public class EnviarCorreoServlet extends HttpServlet {
             out.println("</body></html>");
 
         } catch (MessagingException e) {
-            //  Mostrar error 
+            //  En caaso de que haya un error lo muestra y redirige al index principal
             response.setContentType("text/html;charset=UTF-8");
             PrintWriter out = response.getWriter();
             out.println("<html><body style='font-family:sans-serif; text-align:center; padding-top:40px;'>");

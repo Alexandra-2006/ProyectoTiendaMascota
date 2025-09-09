@@ -1,3 +1,4 @@
+
 package Controlador;
 
 import java.io.IOException;
@@ -32,7 +33,7 @@ public class GenerarPdfServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        // 👉 Forzar descarga automática
+        //  Forzar descarga automática
         //response.setContentType("application/pdf");
         //response.setHeader("Content-Disposition", "attachment; filename=reporte_clientes.pdf");
     	

@@ -144,44 +144,73 @@ button[type="reset"]:hover {
 		<h1>Formulario de Mascota</h1>
 
 		<div class="form-group">
-			<label for="IDMascota">ID Mascota (solo para actualizar/eliminar):</label> <input type="number" name="IDMascota"	id="IDMascota" />
+			<label for="IDMascota">ID Mascota (solo para
+				actualizar/eliminar):</label> <input type="number" name="IDMascota"
+				id="IDMascota" />
 		</div>
 
 		<div class="form-group">
-			<label for="nombre">Nombre:</label> <input type="text" name="nombre" id="nombre" required />
+			<label for="nombre">Nombre:</label> <input type="text" name="nombre"
+				id="nombre" required />
 		</div>
 
 		<div class="form-group">
-			<label for="especie">Especie:</label> <input type="text" name="especie" id="especie" required />
+			<label for="especie">Especie:</label> <input type="text"
+				name="especie" id="especie" required />
 		</div>
 
 		<div class="form-group">
-			<label for="genero">Género:</label> <input type="text" name="genero" id="genero" required />
+			<label for="genero">Género:</label> <input type="text" name="genero"
+				id="genero" required />
 		</div>
 
 		<div class="form-group">
-			<label for="raza">Raza:</label> <input type="text" name="raza" id="raza" required />
+			<label for="raza">Raza:</label> <input type="text" name="raza"
+				id="raza" required />
 		</div>
 
 		<div class="form-group">
-			<label for="IDCedula">ID Propietario:</label> <input type="number" name="IDCedula" id="IDCedula" required />
+			<label for="IDCedula">ID Propietario:</label> <input type="number"
+				name="IDCedula" id="IDCedula" required />
 		</div>
 
 		<div class="button-group">
 			<button type="submit" name="accion" value="insertar">Registrar</button>
-			<button type="submit" name="accion" value="actualizar">Actualizar</button>
-			<button type="submit" name="accion" value="eliminar" onclick="return eliminarSoloConID()">Eliminar</button>
-			<button type="submit" name="accion" value="listar" onclick="return quitarRequired()">Ver</button>
+			<button type="submit" name="accion" value="actualizar"
+				onclick="return validarActualizar()">Actualizar</button>
+			<button type="submit" name="accion" value="eliminar"
+				onclick="return eliminarSoloConID()">Eliminar</button>
+			<button type="submit" name="accion" value="listar"
+				onclick="return quitarRequired()">Ver</button>
 			<button type="reset">Limpiar</button>
+
+
+			<nav style="text-align: center; margin-bottom: 20px;">
+				<a href="EnviarCorreo.jsp">Enviar Correo</a>
+			</nav>
 		</div>
+		
+		<a href="ConsultarMascota.jsp" class="btn btn-info">Consultar
+				mascota</a>
 	</form>
-	
+
 	<form action="GenerarPdfServlet" method="get">
-		<input type="submit" value ="Generar PDF"/>
+		<input type="submit" value="Generar PDF" />
 	</form>
 
+	<script>
+	function validarActualizar() {
+		const idInput = document.getElementById('IDMascota');
+		if (!idInput.value.trim()) {
+			alert("Debes ingresar el ID de la mascota que deseas actualizar.");
+			idInput.focus();
+			return false;
+		}
+		return true;
+	}
+</script>
 
-<script>
+	<script>
 	function eliminarSoloConID() {
 	  const idInput = document.getElementById('IDMascota');
 	  if (!idInput.value) {
@@ -194,7 +223,7 @@ button[type="reset"]:hover {
 	}
 </script>
 
-<script>
+	<script>
 	function quitarRequired() {
 	    document.querySelectorAll('input[required]').forEach(input => {
 	        input.removeAttribute('required');
@@ -205,7 +234,4 @@ button[type="reset"]:hover {
 
 </body>
 
-<nav style="text-align: center; margin-bottom: 20px;">
-  <a href="EnviarCorreo.jsp">Enviar Correo</a>
-</nav>
 </html>
