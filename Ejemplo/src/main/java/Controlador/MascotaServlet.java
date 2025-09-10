@@ -93,7 +93,14 @@ public class MascotaServlet extends HttpServlet {
             m.setIdcedula(idcedula);
 
             Dao.insert(m);//Llama al Dao
-            
+            //Notificación por inserción
+            try {
+                noti.SIM("Registro de nueva mascota", "Se registró una nueva mascota con nombre: " + m.getNombre());
+                System.out.println("Correo enviado correctamente.");
+            } catch (Exception e) {
+                System.out.println("Error al enviar correo: " + e.getMessage());
+            }
+
           
             if (!response.isCommitted()) {
                 response.sendRedirect("index.jsp"); //Redirige al index
@@ -177,7 +184,7 @@ public class MascotaServlet extends HttpServlet {
             int idMascota = Integer.parseInt(request.getParameter("IDMascota"));
             Dao.delete(idMascota);//Llama al DAO
             
-            
+        
             if (!response.isCommitted()) {
                 response.sendRedirect("index.jsp");//Redirige al index
             } else {
